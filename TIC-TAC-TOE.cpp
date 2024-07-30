@@ -95,6 +95,17 @@ void func3(){
     else cout<<"No empty space"<<endl;
     func2();
 }
+
+void resetBoard() {
+    char initialSpace[3][3] = {{'1','2','3'},{'4','5','6'},{'7','8','9'}};
+    for (int r = 0; r < 3; ++r) {
+        for (int c = 0; c < 3; ++c) {
+            space[r][c] = initialSpace[r][c];
+        }
+    }
+    token = 'X'; // Reset the starting player
+}
+
 bool checkwin(){
     for(j=0;j<3;j++){
         if(space[j][0]==space[j][1] && space[j][0]==space[j][2] || space[0][j]==space[1][j] && space[0][j]==space[2][j]){
@@ -125,7 +136,9 @@ bool checktie(){
     
 
 int main(){
-
+    char playagain;
+    do{
+        resetBoard();
     func1();
     func2();
     while(true){
@@ -143,6 +156,12 @@ int main(){
             break;
         }
     } 
+
+        cout<<"Do you want to play again(y/n):";
+        cin>>playagain;
+        cin.ignore();
+    }while(playagain=='y' || playagain=='Y');
+
    cout<<"Press enter to exit...";
    cin.ignore();
    cin.get();
